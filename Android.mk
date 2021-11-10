@@ -17,12 +17,13 @@ MINIGBM_SRC := \
 	helpers.c \
 	i915.c \
 	mediatek.c \
-	meson.c \
 	msm.c \
-	radeon.c \
 	rockchip.c \
 	vc4.c \
-	virtio_gpu.c
+
+# meson.c \
+# radeon.c \
+#	virtio_gpu.c
 
 MINIGBM_CPPFLAGS := -std=c++14
 MINIGBM_CFLAGS := \
@@ -34,6 +35,8 @@ MINIGBM_CFLAGS := \
 ifneq ($(filter $(intel_drivers), $(BOARD_GPU_DRIVERS)),)
 MINIGBM_CPPFLAGS += -DDRV_I915
 MINIGBM_CFLAGS += -DDRV_I915
+MINIGBM_CPPFLAGS += -DI915_SCANOUT_Y_TILED
+MINIGBM_CFLAGS += -DI915_SCANOUT_Y_TILED
 LOCAL_SHARED_LIBRARIES += libdrm_intel
 endif
 
